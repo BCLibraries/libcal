@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Lits\LibCal;
 
+use Lits\LibCal\Action\HoursAction;
 use Lits\LibCal\Action\SpaceAction;
 use Lits\LibCal\Data\TokenData;
 use Lits\LibCal\Exception\ClientException;
@@ -180,6 +181,17 @@ final class Client
     public function space(): SpaceAction
     {
         return new SpaceAction($this);
+    }
+
+    /**
+     * Retrieve action for LibCal Hours API.
+     *
+     * @param int|int[] $id The id of the location to retrieve.
+     * @return HoursAction Hours lookup action.
+     */
+    public function hours($id): HoursAction
+    {
+        return new HoursAction($this, $id);
     }
 
     /**
